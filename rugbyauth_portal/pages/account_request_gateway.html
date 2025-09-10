@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demande d'Accès - RugbyAuth Portal</title>
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="fonts.gstatic.com" crossorigin />
+<script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Frugbyauth2819back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.8"></script>
+</head>
+<body class="min-h-screen bg-background">
+    <!-- Navigation Header -->
+    <nav class="bg-surface shadow-subtle border-b border-border-light">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <svg class="h-10 w-10 text-primary" viewBox="0 0 40 40" fill="currentColor">
+                            <circle cx="20" cy="20" r="18" fill="none" stroke="currentColor" stroke-width="2"/>
+                            <ellipse cx="20" cy="20" rx="12" ry="8" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                            <path d="M8 20 L32 20 M20 8 L20 32" stroke="currentColor" stroke-width="1"/>
+                            <circle cx="20" cy="20" r="3" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <div class="ml-3">
+                        <h1 class="text-xl font-bold text-primary font-accent">RugbyAuth Portal</h1>
+                        <p class="text-xs text-text-secondary">Communauté Rugby Exclusive</p>
+                    </div>
+                </div>
+                
+                <!-- Navigation Links -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="authentication_portal.html" class="text-text-secondary hover:text-primary transition-smooth px-3 py-2 rounded-md text-sm">Connexion</a>
+                        <a href="account_request_gateway.html" class="text-primary font-semibold px-3 py-2 rounded-md text-sm">Demander l'Accès</a>
+                        <a href="rugby_field_visualizer.html" class="text-text-secondary hover:text-primary transition-smooth px-3 py-2 rounded-md text-sm">Terrain Rugby</a>
+                    </div>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button type="button" class="text-text-secondary hover:text-primary focus:outline-none focus:text-primary transition-smooth">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative py-16 overflow-hidden">
+        <!-- Rugby Field Background -->
+        <div class="absolute inset-0 rugby-field-pattern opacity-5"></div>
+        <div class="absolute inset-0 bg-gradient-to-br from-primary-50 via-transparent to-accent-50"></div>
+        
+        <!-- Rugby Field Lines Overlay -->
+        <div class="absolute inset-0 opacity-10">
+            <svg class="w-full h-full" viewBox="0 0 800 600" fill="none">
+                <!-- Field outline -->
+                <rect x="100" y="100" width="600" height="400" stroke="#1B5E20" stroke-width="2" fill="none"/>
+                <!-- Center line -->
+                <line x1="400" y1="100" x2="400" y2="500" stroke="#1B5E20" stroke-width="1"/>
+                <!-- Try lines -->
+                <line x1="200" y1="100" x2="200" y2="500" stroke="#1B5E20" stroke-width="1"/>
+                <line x1="600" y1="100" x2="600" y2="500" stroke="#1B5E20" stroke-width="1"/>
+                <!-- Center circle -->
+                <circle cx="400" cy="300" r="50" stroke="#1B5E20" stroke-width="1" fill="none"/>
+            </svg>
+        </div>
+
+        <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Header -->
+            <div class="text-center mb-12">
+                <div class="inline-flex items-center justify-center w-16 h-16 bg-primary rounded-full mb-6">
+                    <svg class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/>
+                    </svg>
+                </div>
+                <h1 class="text-4xl font-bold text-primary font-accent mb-4">Rejoignez Notre Communauté</h1>
+                <p class="text-xl text-text-secondary max-w-2xl mx-auto">
+                    Demandez l'accès à la plateforme rugby exclusive. Processus d'approbation sous 24-48h.
+                </p>
+            </div>
+
+            <!-- Progress Indicator -->
+            <div class="mb-8">
+                <div class="flex items-center justify-center space-x-4 mb-4">
+                    <div class="flex items-center">
+                        <div id="step1-indicator" class="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center font-semibold">1</div>
+                        <span class="ml-2 text-sm font-medium text-primary">Informations Personnelles</span>
+                    </div>
+                    <div class="w-16 h-1 bg-border rounded">
+                        <div id="progress1" class="h-full bg-primary rounded transition-all duration-500 w-0"></div>
+                    </div>
+                    <div class="flex items-center">
+                        <div id="step2-indicator" class="w-10 h-10 bg-border text-text-secondary rounded-full flex items-center justify-center font-semibold">2</div>
+                        <span class="ml-2 text-sm font-medium text-text-secondary">Expérience Rugby</span>
+                    </div>
+                    <div class="w-16 h-1 bg-border rounded">
+                        <div id="progress2" class="h-full bg-primary rounded transition-all duration-500 w-0"></div>
+                    </div>
+                    <div class="flex items-center">
+                        <div id="step3-indicator" class="w-10 h-10 bg-border text-text-secondary rounded-full flex items-center justify-center font-semibold">3</div>
+                        <span class="ml-2 text-sm font-medium text-text-secondary">Validation</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Multi-Step Form -->
+            <div class="card p-8 shadow-rugby-card max-w-2xl mx-auto">
+                <form id="registrationForm" class="space-y-6">
+                    <!-- Step 1: Personal Information -->
+                    <div id="step1" class="step-content">
+                        <div class="mb-6">
+                            <h3 class="text-xl font-semibold text-primary mb-2">Informations Personnelles</h3>
+                            <p class="text-text-secondary text-sm">Ces informations nous aident à personnaliser votre expérience communautaire.</p>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- First Name -->
+                            <div class="relative">
+                                <input type="text" id="firstName" name="firstName" class="input-field peer placeholder-transparent" placeholder="Prénom" required />
+                                <label for="firstName" class="absolute left-4 -top-2.5 bg-surface px-2 text-sm text-text-secondary transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-text-secondary peer-placeholder-shown:top-3 peer-focus:-top-2.5 peer-focus:text-sm peer-focus:text-primary">
+                                    Prénom *
+                                </label>
+                            </div>
+
+                            <!-- Last Name -->
+                            <div class="relative">
+                                <input type="text" id="lastName" name="lastName" class="input-field peer placeholder-transparent" placeholder="Nom" required />
+                                <label for="lastName" class="absolute left-4 -top-2.5 bg-surface px-2 text-sm text-text-secondary transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-text-secondary peer-placeholder-shown:top-3 peer-focus:-top-2.5 peer-focus:text-sm peer-focus:text-primary">
+                                    Nom *
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="relative">
+                            <input type="email" id="email" name="email" class="input-field peer placeholder-transparent" placeholder="Adresse email" required />
+                            <label for="email" class="absolute left-4 -top-2.5 bg-surface px-2 text-sm text-text-secondary transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-text-secondary peer-placeholder-shown:top-3 peer-focus:-top-2.5 peer-focus:text-sm peer-focus:text-primary">
+                                Adresse Email *
+                            </label>
+                            <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
+                                <svg class="h-5 w-5 text-text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"/>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <!-- Phone -->
+                        <div class="relative">
+                            <input type="tel" id="phone" name="phone" class="input-field peer placeholder-transparent" placeholder="Téléphone" required />
+                            <label for="phone" class="absolute left-4 -top-2.5 bg-surface px-2 text-sm text-text-secondary transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-text-secondary peer-placeholder-shown:top-3 peer-focus:-top-2.5 peer-focus:text-sm peer-focus:text-primary">
+                                Numéro de Téléphone *
+                            </label>
+                            <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
+                                <svg class="h-5 w-5 text-text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <!-- Location -->
+                        <div class="relative">
+                            <input type="text" id="location" name="location" class="input-field peer placeholder-transparent" placeholder="Ville, Région" required />
+                            <label for="location" class="absolute left-4 -top-2.5 bg-surface px-2 text-sm text-text-secondary transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-text-secondary peer-placeholder-shown:top-3 peer-focus:-top-2.5 peer-focus:text-sm peer-focus:text-primary">
+                                Localisation *
+                            </label>
+                            <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
+                                <svg class="h-5 w-5 text-text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-end">
+                            <button type="button" id="nextStep1" class="btn-primary flex items-center space-x-2">
+                                <span>Continuer</span>
+                                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Rugby Experience -->
+                    <div id="step2" class="step-content hidden">
+                        <div class="mb-6">
+                            <h3 class="text-xl font-semibold text-primary mb-2">Expérience Rugby</h3>
+                            <p class="text-text-secondary text-sm">Partagez votre parcours rugby pour mieux vous intégrer à la communauté.</p>
+                        </div>
+
+                        <!-- Rugby Role -->
+                        <div class="relative">
+                            <select id="rugbyRole" name="rugbyRole" class="input-field" required>
+                                <option value>Sélectionnez votre rôle principal</option>
+                                <option value="player">Joueur/Joueuse</option>
+                                <option value="coach">Entraîneur/Entraîneuse</option>
+                                <option value="referee">Arbitre</option>
+                                <option value="manager">Manager d'équipe</option>
+                                <option value="analyst">Analyste tactique</option>
+                                <option value="fan">Supporter passionné</option>
+                                <option value="official">Officiel de club</option>
+                                <option value="other">Autre</option>
+                            </select>
+                            <label class="absolute left-4 -top-2.5 bg-surface px-2 text-sm text-primary">
+                                Rôle dans le Rugby *
+                            </label>
+                        </div>
+
+                        <!-- Experience Level -->
+                        <div class="relative">
+                            <select id="experienceLevel" name="experienceLevel" class="input-field" required>
+                                <option value>Sélectionnez votre niveau d'expérience</option>
+                                <option value="beginner">Débutant (0-2 ans)</option>
+                                <option value="intermediate">Intermédiaire (3-7 ans)</option>
+                                <option value="advanced">Avancé (8-15 ans)</option>
+                                <option value="expert">Expert (15+ ans)</option>
+                                <option value="professional">Professionnel</option>
+                            </select>
+                            <label class="absolute left-4 -top-2.5 bg-surface px-2 text-sm text-primary">
+                                Niveau d'Expérience *
+                            </label>
+                        </div>
+
+                        <!-- Current Club/Organization -->
+                        <div class="relative">
+                            <input type="text" id="currentClub" name="currentClub" class="input-field peer placeholder-transparent" placeholder="Club ou organisation actuelle" />
+                            <label for="currentClub" class="absolute left-4 -top-2.5 bg-surface px-2 text-sm text-text-secondary transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-text-secondary peer-placeholder-shown:top-3 peer-focus:-top-2.5 peer-focus:text-sm peer-focus:text-primary">
+                                Club/Organisation Actuelle
+                            </label>
+                        </div>
+
+                        <!-- Favorite Position (for players) -->
+                        <div class="relative">
+                            <select id="favoritePosition" name="favoritePosition" class="input-field">
+                                <option value>Sélectionnez votre poste préféré</option>
+                                <optgroup label="Avants">
+                                    <option value="pilier-gauche">Pilier Gauche (1)</option>
+                                    <option value="talonneur">Talonneur (2)</option>
+                                    <option value="pilier-droit">Pilier Droit (3)</option>
+                                    <option value="deuxieme-ligne-1">2ème Ligne (4)</option>
+                                    <option value="deuxieme-ligne-2">2ème Ligne (5)</option>
+                                    <option value="troisieme-ligne-aile-1">3ème Ligne Aile (6)</option>
+                                    <option value="troisieme-ligne-aile-2">3ème Ligne Aile (7)</option>
+                                    <option value="troisieme-ligne-centre">3ème Ligne Centre (8)</option>
+                                </optgroup>
+                                <optgroup label="Arrières">
+                                    <option value="demi-melee">Demi de Mêlée (9)</option>
+                                    <option value="demi-ouverture">Demi d'Ouverture (10)</option>
+                                    <option value="centre-1">Centre (12)</option>
+                                    <option value="centre-2">Centre (13)</option>
+                                    <option value="ailier-gauche">Ailier Gauche (11)</option>
+                                    <option value="ailier-droit">Ailier Droit (14)</option>
+                                    <option value="arriere">Arrière (15)</option>
+                                </optgroup>
+                                <option value="non-applicable">Non applicable</option>
+                            </select>
+                            <label class="absolute left-4 -top-2.5 bg-surface px-2 text-sm text-text-secondary">
+                                Poste Préféré (si joueur)
+                            </label>
+                        </div>
+
+                        <!-- Motivation -->
+                        <div class="relative">
+                            <textarea id="motivation" name="motivation" rows="4" class="input-field peer placeholder-transparent resize-none" placeholder="Pourquoi souhaitez-vous rejoindre notre communauté ?" required></textarea>
+                            <label for="motivation" class="absolute left-4 -top-2.5 bg-surface px-2 text-sm text-text-secondary transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-text-secondary peer-placeholder-shown:top-3 peer-focus:-top-2.5 peer-focus:text-sm peer-focus:text-primary">
+                                Motivation pour rejoindre la communauté *
+                            </label>
+                        </div>
+
+                        <div class="flex justify-between">
+                            <button type="button" id="prevStep2" class="btn-secondary flex items-center space-x-2">
+                                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 17l-5-5m0 0l5-5m-5 5h12"/>
+                                </svg>
+                                <span>Retour</span>
+                            </button>
+                            <button type="button" id="nextStep2" class="btn-primary flex items-center space-x-2">
+                                <span>Continuer</span>
+                                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Validation -->
+                    <div id="step3" class="step-content hidden">
+                        <div class="mb-6">
+                            <h3 class="text-xl font-semibold text-primary mb-2">Validation et Conditions</h3>
+                            <p class="text-text-secondary text-sm">Dernière étape avant soumission de votre demande d'accès.</p>
+                        </div>
+
+                        <!-- Summary Card -->
+                        <div class="bg-primary-50 border border-primary-100 rounded-lg p-6 mb-6">
+                            <h4 class="font-semibold text-primary mb-4">Résumé de votre demande</h4>
+                            <div id="summaryContent" class="space-y-2 text-sm text-primary-700">
+                                <!-- Summary will be populated by JavaScript -->
+                            </div>
+                        </div>
+
+                        <!-- Terms and Conditions -->
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <input id="agreeTerms" name="agreeTerms" type="checkbox" class="h-4 w-4 text-primary focus:ring-primary border-border rounded mt-1" required />
+                                <label for="agreeTerms" class="ml-3 block text-sm text-text-secondary">
+                                    J'accepte les <a href="javascript:void(0)" class="text-primary hover:text-primary-700 underline">conditions d'utilisation</a> et la <a href="javascript:void(0)" class="text-primary hover:text-primary-700 underline">politique de confidentialité</a> de RugbyAuth Portal.
+                                </label>
+                            </div>
+
+                            <div class="flex items-start">
+                                <input id="agreeGDPR" name="agreeGDPR" type="checkbox" class="h-4 w-4 text-primary focus:ring-primary border-border rounded mt-1" required />
+                                <label for="agreeGDPR" class="ml-3 block text-sm text-text-secondary">
+                                    Je consens au traitement de mes données personnelles conformément au RGPD pour l'évaluation de ma demande d'accès.
+                                </label>
+                            </div>
+
+                            <div class="flex items-start">
+                                <input id="agreeCommunity" name="agreeCommunity" type="checkbox" class="h-4 w-4 text-primary focus:ring-primary border-border rounded mt-1" required />
+                                <label for="agreeCommunity" class="ml-3 block text-sm text-text-secondary">
+                                    Je m'engage à respecter les valeurs de la communauté rugby : respect, intégrité, passion, solidarité et discipline.
+                                </label>
+                            </div>
+
+                            <div class="flex items-start">
+                                <input id="agreeNotifications" name="agreeNotifications" type="checkbox" class="h-4 w-4 text-primary focus:ring-primary border-border rounded mt-1" />
+                                <label for="agreeNotifications" class="ml-3 block text-sm text-text-secondary">
+                                    J'accepte de recevoir des notifications par email concernant ma demande et les actualités de la communauté (optionnel).
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Approval Process Info -->
+                        <div class="bg-accent-50 border border-accent-200 rounded-lg p-6 mt-6">
+                            <div class="flex items-start">
+                                <svg class="w-6 h-6 text-accent-600 mt-1 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                <div>
+                                    <h5 class="font-semibold text-accent-800 mb-2">Processus d'Approbation</h5>
+                                    <ul class="text-sm text-accent-700 space-y-1">
+                                        <li>• Votre demande sera examinée par notre équipe d'administration</li>
+                                        <li>• Délai de traitement : 24-48 heures ouvrables</li>
+                                        <li>• Vous recevrez un email de confirmation de réception</li>
+                                        <li>• Notification par email de la décision finale</li>
+                                        <li>• En cas d'approbation, accès immédiat à la plateforme</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-between">
+                            <button type="button" id="prevStep3" class="btn-secondary flex items-center space-x-2">
+                                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 17l-5-5m0 0l5-5m-5 5h12"/>
+                                </svg>
+                                <span>Retour</span>
+                            </button>
+                            <button type="submit" id="submitRequest" class="btn-primary flex items-center space-x-2">
+                                <span>Soumettre la Demande</span>
+                                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Social Proof Section -->
+            <div class="mt-12 text-center">
+                <h3 class="text-lg font-semibold text-primary mb-6">Rejoignez une Communauté d'Excellence</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto">
+                    <!-- Community Stats -->
+                    <div class="card p-6 text-center">
+                        <div class="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"/>
+                            </svg>
+                        </div>
+                        <h4 class="font-semibold text-primary mb-2">2,847+ Membres</h4>
+                        <p class="text-sm text-text-secondary">Communauté active et engagée</p>
+                    </div>
+
+                    <!-- Approval Rate -->
+                    <div class="card p-6 text-center">
+                        <div class="w-12 h-12 bg-success-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-6 h-6 text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                        <h4 class="font-semibold text-primary mb-2">92% Approuvé</h4>
+                        <p class="text-sm text-text-secondary">Taux d'approbation élevé</p>
+                    </div>
+
+                    <!-- Response Time -->
+                    <div class="card p-6 text-center">
+                        <div class="w-12 h-12 bg-accent-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-6 h-6 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                        <h4 class="font-semibold text-primary mb-2">< 24h</h4>
+                        <p class="text-sm text-text-secondary">Temps de réponse moyen</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Already Have Account -->
+            <div class="mt-8 text-center">
+                <p class="text-text-secondary mb-4">Vous avez déjà un compte ?</p>
+                <a href="authentication_portal.html" class="btn-secondary inline-flex items-center space-x-2">
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14"/>
+                    </svg>
+                    <span>Retour à la Connexion</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-surface border-t border-border-light py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center mb-4 md:mb-0">
+                    <svg class="h-8 w-8 text-primary mr-3" viewBox="0 0 40 40" fill="currentColor">
+                        <circle cx="20" cy="20" r="18" fill="none" stroke="currentColor" stroke-width="2"/>
+                        <ellipse cx="20" cy="20" rx="12" ry="8" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                        <path d="M8 20 L32 20 M20 8 L20 32" stroke="currentColor" stroke-width="1"/>
+                        <circle cx="20" cy="20" r="3" fill="currentColor"/>
+                    </svg>
+                    <div>
+                        <p class="text-sm font-semibold text-primary">RugbyAuth Portal</p>
+                        <p class="text-xs text-text-secondary">Communauté Rugby Exclusive</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-center space-x-6 text-sm text-text-secondary">
+                    <a href="javascript:void(0)" class="hover:text-primary transition-smooth">Confidentialité</a>
+                    <a href="javascript:void(0)" class="hover:text-primary transition-smooth">Conditions</a>
+                    <a href="javascript:void(0)" class="hover:text-primary transition-smooth">Support</a>
+                    <span>© 2025 RugbyAuth Portal. Tous droits réservés.</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Multi-step form logic
+        let currentStep = 1;
+        const totalSteps = 3;
+
+        // Step navigation functions
+        function showStep(step) {
+            // Hide all steps
+            document.querySelectorAll('.step-content').forEach(content => {
+                content.classList.add('hidden');
+            });
+            
+            // Show current step
+            document.getElementById(`step${step}`).classList.remove('hidden');
+            
+            // Update progress indicators
+            updateProgressIndicators(step);
+            
+            // Update progress bars
+            updateProgressBars(step);
+        }
+
+        function updateProgressIndicators(step) {
+            for (let i = 1; i <= totalSteps; i++) {
+                const indicator = document.getElementById(`step${i}-indicator`);
+                const label = indicator.nextElementSibling;
+                
+                if (i < step) {
+                    // Completed step
+                    indicator.className = 'w-10 h-10 bg-success text-white rounded-full flex items-center justify-center font-semibold';
+                    indicator.innerHTML = '✓';
+                    label.className = 'ml-2 text-sm font-medium text-success';
+                } else if (i === step) {
+                    // Current step
+                    indicator.className = 'w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center font-semibold';
+                    indicator.innerHTML = i;
+                    label.className = 'ml-2 text-sm font-medium text-primary';
+                } else {
+                    // Future step
+                    indicator.className = 'w-10 h-10 bg-border text-text-secondary rounded-full flex items-center justify-center font-semibold';
+                    indicator.innerHTML = i;
+                    label.className = 'ml-2 text-sm font-medium text-text-secondary';
+                }
+            }
+        }
+
+        function updateProgressBars(step) {
+            const progress1 = document.getElementById('progress1');
+            const progress2 = document.getElementById('progress2');
+            
+            if (step >= 2) {
+                progress1.style.width = '100%';
+            } else {
+                progress1.style.width = '0%';
+            }
+            
+            if (step >= 3) {
+                progress2.style.width = '100%';
+            } else {
+                progress2.style.width = '0%';
+            }
+        }
+
+        function validateStep(step) {
+            const stepElement = document.getElementById(`step${step}`);
+            const requiredFields = stepElement.querySelectorAll('[required]');
+            let isValid = true;
+
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    field.classList.add('border-error');
+                    isValid = false;
+                } else {
+                    field.classList.remove('border-error');
+                }
+            });
+
+            return isValid;
+        }
+
+        function updateSummary() {
+            const summaryContent = document.getElementById('summaryContent');
+            const formData = new FormData(document.getElementById('registrationForm'));
+            
+            const firstName = formData.get('firstName');
+            const lastName = formData.get('lastName');
+            const email = formData.get('email');
+            const phone = formData.get('phone');
+            const location = formData.get('location');
+            const rugbyRole = formData.get('rugbyRole');
+            const experienceLevel = formData.get('experienceLevel');
+            const currentClub = formData.get('currentClub');
+            const favoritePosition = formData.get('favoritePosition');
+
+            summaryContent.innerHTML = `
+                <div><strong>Nom :</strong> ${firstName} ${lastName}</div>
+                <div><strong>Email :</strong> ${email}</div>
+                <div><strong>Téléphone :</strong> ${phone}</div>
+                <div><strong>Localisation :</strong> ${location}</div>
+                <div><strong>Rôle Rugby :</strong> ${rugbyRole}</div>
+                <div><strong>Expérience :</strong> ${experienceLevel}</div>
+                ${currentClub ? `<div><strong>Club Actuel :</strong> ${currentClub}</div>` : ''}
+                ${favoritePosition && favoritePosition !== 'non-applicable' ? `<div><strong>Poste Préféré :</strong> ${favoritePosition}</div>` : ''}
+            `;
+        }
+
+        // Event listeners for step navigation
+        document.getElementById('nextStep1').addEventListener('click', function() {
+            if (validateStep(1)) {
+                currentStep = 2;
+                showStep(currentStep);
+            }
+        });
+
+        document.getElementById('nextStep2').addEventListener('click', function() {
+            if (validateStep(2)) {
+                currentStep = 3;
+                updateSummary();
+                showStep(currentStep);
+            }
+        });
+
+        document.getElementById('prevStep2').addEventListener('click', function() {
+            currentStep = 1;
+            showStep(currentStep);
+        });
+
+        document.getElementById('prevStep3').addEventListener('click', function() {
+            currentStep = 2;
+            showStep(currentStep);
+        });
+
+        // Form submission
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (!validateStep(3)) {
+                return;
+            }
+
+            const submitButton = document.getElementById('submitRequest');
+            const originalText = submitButton.innerHTML;
+            
+            // Show loading state
+            submitButton.innerHTML = `
+                <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Soumission en cours...
+            `;
+            submitButton.disabled = true;
+
+            // Simulate form submission
+            setTimeout(() => {
+                // Success state
+                submitButton.innerHTML = `
+                    <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Demande Soumise !
+                `;
+
+                // Show success message
+                setTimeout(() => {
+                    alert('Votre demande d\'accès a été soumise avec succès ! Vous recevrez un email de confirmation sous peu. Notre équipe examinera votre demande dans les 24-48 heures.');
+                    
+                    // Redirect to login page
+                    window.location.href = 'authentication_portal.html';
+                }, 1500);
+            }, 2000);
+        });
+
+        // Floating label animation enhancement
+        document.querySelectorAll('.input-field').forEach(input => {
+            input.addEventListener('focus', function() {
+                const label = this.parentElement.querySelector('label');
+                if (label) {
+                    label.classList.add('text-primary');
+                }
+            });
+            
+            input.addEventListener('blur', function() {
+                const label = this.parentElement.querySelector('label');
+                if (label && !this.value) {
+                    label.classList.remove('text-primary');
+                }
+            });
+        });
+
+        // Initialize first step
+        showStep(1);
+
+        // Auto-hide/show position field based on role
+        document.getElementById('rugbyRole').addEventListener('change', function() {
+            const positionField = document.getElementById('favoritePosition').parentElement;
+            if (this.value === 'player') {
+                positionField.style.display = 'block';
+                document.getElementById('favoritePosition').required = true;
+            } else {
+                positionField.style.display = 'none';
+                document.getElementById('favoritePosition').required = false;
+                document.getElementById('favoritePosition').value = 'non-applicable';
+            }
+        });
+
+        // Real-time validation feedback
+        document.querySelectorAll('[required]').forEach(field => {
+            field.addEventListener('blur', function() {
+                if (!this.value.trim()) {
+                    this.classList.add('border-error');
+                } else {
+                    this.classList.remove('border-error');
+                }
+            });
+
+            field.addEventListener('input', function() {
+                if (this.value.trim()) {
+                    this.classList.remove('border-error');
+                }
+            });
+        });
+
+        // Email validation
+        document.getElementById('email').addEventListener('blur', function() {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (this.value && !emailRegex.test(this.value)) {
+                this.classList.add('border-error');
+            } else if (this.value) {
+                this.classList.remove('border-error');
+            }
+        });
+
+        // Phone validation (French format)
+        document.getElementById('phone').addEventListener('blur', function() {
+            const phoneRegex = /^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/;
+            if (this.value && !phoneRegex.test(this.value.replace(/\s/g, ''))) {
+                this.classList.add('border-error');
+            } else if (this.value) {
+                this.classList.remove('border-error');
+            }
+        });
+    </script>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+</html>

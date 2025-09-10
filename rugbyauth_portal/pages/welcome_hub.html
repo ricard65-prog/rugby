@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hub d'Accueil - RugbyAuth Portal</title>
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Frugbyauth2819back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.8"></script>
+</head>
+<body class="min-h-screen bg-background">
+    <!-- Navigation Header -->
+    <nav class="bg-surface shadow-subtle border-b border-border-light sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <svg class="h-10 w-10 text-primary" viewBox="0 0 40 40" fill="currentColor">
+                            <circle cx="20" cy="20" r="18" fill="none" stroke="currentColor" stroke-width="2"/>
+                            <ellipse cx="20" cy="20" rx="12" ry="8" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                            <path d="M8 20 L32 20 M20 8 L20 32" stroke="currentColor" stroke-width="1"/>
+                            <circle cx="20" cy="20" r="3" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <div class="ml-3">
+                        <h1 class="text-xl font-bold text-primary font-accent">RugbyAuth Portal</h1>
+                        <p class="text-xs text-text-secondary">Communauté Rugby Exclusive</p>
+                    </div>
+                </div>
+                
+                <!-- Navigation Links -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="welcome_hub.html" class="text-primary font-semibold px-3 py-2 rounded-md text-sm">Accueil</a>
+                        <a href="rugby_field_visualizer.html" class="text-text-secondary hover:text-primary transition-smooth px-3 py-2 rounded-md text-sm">Terrain Rugby</a>
+                        <a href="profile_management_center.html" class="text-text-secondary hover:text-primary transition-smooth px-3 py-2 rounded-md text-sm">Profil</a>
+                    </div>
+                </div>
+                
+                <!-- User Menu -->
+                <div class="flex items-center space-x-4">
+                    <!-- Notifications -->
+                    <button class="text-text-secondary hover:text-primary transition-smooth relative">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-5 5v-5zM10.07 2.82l3.12 3.12M7.05 5.84l3.12 3.12M3.98 8.86l3.12 3.12"/>
+                        </svg>
+                        <span class="absolute -top-1 -right-1 h-3 w-3 bg-accent rounded-full"></span>
+                    </button>
+                    
+                    <!-- User Avatar -->
+                    <div class="relative">
+                        <button id="userMenuButton" class="flex items-center space-x-2 text-text-secondary hover:text-primary transition-smooth">
+                            <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+                                <span class="text-white text-sm font-semibold" id="userInitials">JD</span>
+                            </div>
+                            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        
+                        <!-- Dropdown Menu -->
+                        <div id="userDropdown" class="hidden absolute right-0 mt-2 w-48 bg-surface rounded-lg shadow-rugby-card border border-border-light">
+                            <div class="py-1">
+                                <a href="profile_management_center.html" class="block px-4 py-2 text-sm text-text-secondary hover:bg-primary-50 hover:text-primary transition-smooth">Mon Profil</a>
+                                <a href="javascript:void(0)" class="block px-4 py-2 text-sm text-text-secondary hover:bg-primary-50 hover:text-primary transition-smooth">Paramètres</a>
+                                <hr class="my-1 border-border-light" />
+                                <a href="authentication_portal.html" id="logoutButton" class="block px-4 py-2 text-sm text-error hover:bg-red-50 transition-smooth">Déconnexion</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button type="button" class="text-text-secondary hover:text-primary focus:outline-none focus:text-primary transition-smooth">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Welcome Hero Section -->
+    <section class="relative bg-gradient-to-br from-primary-50 via-surface to-accent-50 py-12">
+        <div class="absolute inset-0 rugby-field-pattern opacity-5"></div>
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <!-- Welcome Animation -->
+                <div class="mb-6">
+                    <div class="inline-flex items-center justify-center w-20 h-20 bg-primary rounded-full mb-4 animate-rugby-roll">
+                        <svg class="w-10 h-10 text-white" viewBox="0 0 24 24" fill="currentColor">
+                            <ellipse cx="12" cy="12" rx="8" ry="6" fill="currentColor"/>
+                            <path d="M4 12h16M12 4v16" stroke="white" stroke-width="1"/>
+                        </svg>
+                    </div>
+                </div>
+                
+                <!-- Personalized Welcome -->
+                <h1 class="text-4xl md:text-5xl font-bold text-primary font-accent mb-4">
+                    Bienvenue, <span id="userName">Membre</span> !
+                </h1>
+                <p class="text-xl text-text-secondary mb-8 max-w-2xl mx-auto">
+                    Vous faites maintenant partie de notre communauté rugby exclusive. 
+                    Explorez les outils tactiques et connectez-vous avec d'autres passionnés.
+                </p>
+                
+                <!-- Community Stats -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                    <div class="card p-6 text-center">
+                        <div class="text-3xl font-bold text-primary mb-2">2,847</div>
+                        <div class="text-text-secondary">Membres Actifs</div>
+                    </div>
+                    <div class="card p-6 text-center">
+                        <div class="text-3xl font-bold text-accent mb-2">156</div>
+                        <div class="text-text-secondary">Équipes Enregistrées</div>
+                    </div>
+                    <div class="card p-6 text-center">
+                        <div class="text-3xl font-bold text-success mb-2">1,234</div>
+                        <div class="text-text-secondary">Tactiques Créées</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Rugby Field Section -->
+    <section class="py-16 bg-surface">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-primary font-accent mb-4">Terrain Rugby Interactif</h2>
+                <p class="text-lg text-text-secondary max-w-2xl mx-auto">
+                    Explorez notre visualiseur de terrain tactique. Cliquez sur les zones pour découvrir leurs fonctionnalités.
+                </p>
+            </div>
+            
+            <!-- Rugby Field Visualization -->
+            <div class="relative max-w-4xl mx-auto">
+                <div class="card p-8 bg-gradient-to-br from-primary-50 to-accent-50">
+                    <!-- Field Container -->
+                    <div class="relative w-full h-96 bg-primary-100 rounded-lg overflow-hidden" id="rugbyField">
+                        <!-- Field Background -->
+                        <div class="absolute inset-0 bg-gradient-to-b from-primary-200 to-primary-300 opacity-30"></div>
+                        
+                        <!-- Field Lines -->
+                        <svg class="absolute inset-0 w-full h-full" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid meet">
+                            <!-- Field outline -->
+                            <rect x="50" y="50" width="700" height="300" stroke="#1B5E20" stroke-width="3" fill="none"/>
+                            
+                            <!-- Center line -->
+                            <line x1="400" y1="50" x2="400" y2="350" stroke="#1B5E20" stroke-width="2"/>
+                            
+                            <!-- Try lines (22m lines) -->
+                            <line x1="170" y1="50" x2="170" y2="350" stroke="#1B5E20" stroke-width="2"/>
+                            <line x1="630" y1="50" x2="630" y2="350" stroke="#1B5E20" stroke-width="2"/>
+                            
+                            <!-- Goal lines -->
+                            <line x1="100" y1="50" x2="100" y2="350" stroke="#1B5E20" stroke-width="2"/>
+                            <line x1="700" y1="50" x2="700" y2="350" stroke="#1B5E20" stroke-width="2"/>
+                            
+                            <!-- Center circle -->
+                            <circle cx="400" cy="200" r="40" stroke="#1B5E20" stroke-width="2" fill="none"/>
+                            
+                            <!-- Goal posts -->
+                            <rect x="385" y="30" width="30" height="20" fill="#1B5E20"/>
+                            <rect x="385" y="350" width="30" height="20" fill="#1B5E20"/>
+                            
+                            <!-- 10m lines -->
+                            <line x1="300" y1="50" x2="300" y2="350" stroke="#1B5E20" stroke-width="1" stroke-dasharray="5,5"/>
+                            <line x1="500" y1="50" x2="500" y2="350" stroke="#1B5E20" stroke-width="1" stroke-dasharray="5,5"/>
+                        </svg>
+                        
+                        <!-- Interactive Zones -->
+                        <div class="absolute inset-0">
+                            <!-- Left Try Zone -->
+                            <div class="field-zone absolute left-12 top-12 bottom-12 w-12 bg-accent bg-opacity-20 hover:bg-opacity-40 transition-all cursor-pointer rounded" data-zone="left-try" title="Zone d'en-but gauche">
+                            </div>
+                            
+                            <!-- Right Try Zone -->
+                            <div class="field-zone absolute right-12 top-12 bottom-12 w-12 bg-accent bg-opacity-20 hover:bg-opacity-40 transition-all cursor-pointer rounded" data-zone="right-try" title="Zone d'en-but droite">
+                            </div>
+                            
+                            <!-- Center Field -->
+                            <div class="field-zone absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-20 h-20 bg-primary bg-opacity-20 hover:bg-opacity-40 transition-all cursor-pointer rounded-full" data-zone="center" title="Centre du terrain">
+                            </div>
+                            
+                            <!-- 22m Zones -->
+                            <div class="field-zone absolute left-20 top-12 bottom-12 w-16 bg-secondary bg-opacity-20 hover:bg-opacity-40 transition-all cursor-pointer rounded" data-zone="left-22" title="Zone des 22m gauche">
+                            </div>
+                            
+                            <div class="field-zone absolute right-20 top-12 bottom-12 w-16 bg-secondary bg-opacity-20 hover:bg-opacity-40 transition-all cursor-pointer rounded" data-zone="right-22" title="Zone des 22m droite">
+                            </div>
+                        </div>
+                        
+                        <!-- Animated Players -->
+                        <div class="absolute inset-0 pointer-events-none">
+                            <div class="player-dot absolute w-3 h-3 bg-primary rounded-full animate-pulse" style="left: 45%; top: 40%;"></div>
+                            <div class="player-dot absolute w-3 h-3 bg-accent rounded-full animate-pulse" style="left: 55%; top: 60%; animation-delay: 0.5s;"></div>
+                            <div class="player-dot absolute w-3 h-3 bg-secondary rounded-full animate-pulse" style="left: 35%; top: 70%; animation-delay: 1s;"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Field Info Panel -->
+                    <div class="mt-6 p-4 bg-surface rounded-lg border border-border-light">
+                        <div id="fieldInfo" class="text-center">
+                            <h3 class="font-semibold text-primary mb-2">Terrain Rugby Officiel</h3>
+                            <p class="text-text-secondary text-sm">Survolez ou cliquez sur les zones pour explorer les fonctionnalités tactiques</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Navigation Cards Section -->
+    <section class="py-16 bg-background">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-primary font-accent mb-4">Accès Rapide</h2>
+                <p class="text-lg text-text-secondary">Découvrez toutes les fonctionnalités de votre communauté rugby</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Profile Management Card -->
+                <a href="profile_management_center.html" class="card p-6 hover:shadow-rugby-hover transition-all group">
+                    <div class="flex items-center justify-center w-12 h-12 bg-primary-100 rounded-lg mb-4 group-hover:bg-primary-200 transition-colors">
+                        <svg class="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-primary mb-2">Gestion du Profil</h3>
+                    <p class="text-text-secondary text-sm">Personnalisez votre profil et vos préférences</p>
+                </a>
+                
+                <!-- Field Visualizer Card -->
+                <a href="rugby_field_visualizer.html" class="card p-6 hover:shadow-rugby-hover transition-all group">
+                    <div class="flex items-center justify-center w-12 h-12 bg-accent-100 rounded-lg mb-4 group-hover:bg-accent-200 transition-colors">
+                        <svg class="w-6 h-6 text-accent-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-primary mb-2">Visualiseur de Terrain</h3>
+                    <p class="text-text-secondary text-sm">Créez et analysez vos tactiques rugby</p>
+                </a>
+                
+                <!-- Community Directory Card -->
+                <a href="javascript:void(0)" class="card p-6 hover:shadow-rugby-hover transition-all group">
+                    <div class="flex items-center justify-center w-12 h-12 bg-secondary-100 rounded-lg mb-4 group-hover:bg-secondary-200 transition-colors">
+                        <svg class="w-6 h-6 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-primary mb-2">Annuaire Communauté</h3>
+                    <p class="text-text-secondary text-sm">Connectez-vous avec d'autres membres</p>
+                </a>
+                
+                <!-- Support Center Card -->
+                <a href="javascript:void(0)" class="card p-6 hover:shadow-rugby-hover transition-all group">
+                    <div class="flex items-center justify-center w-12 h-12 bg-success-100 rounded-lg mb-4 group-hover:bg-green-200 transition-colors">
+                        <svg class="w-6 h-6 text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M12 2.25a9.75 9.75 0 100 19.5 9.75 9.75 0 000-19.5z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-primary mb-2">Centre d'Aide</h3>
+                    <p class="text-text-secondary text-sm">Guides et support technique</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recent Activity & Quick Start Section -->
+    <section class="py-16 bg-surface">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Recent Community Activity -->
+                <div>
+                    <h2 class="text-2xl font-bold text-primary font-accent mb-6">Activité Récente</h2>
+                    <div class="space-y-4">
+                        <!-- Activity Item 1 -->
+                        <div class="card p-4 flex items-start space-x-4">
+                            <div class="flex-shrink-0">
+                                <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
+                                    <span class="text-white text-sm font-semibold">MC</span>
+                                </div>
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="font-semibold text-primary">Marc Dubois</h3>
+                                    <span class="text-xs text-text-secondary">Il y a 2h</span>
+                                </div>
+                                <p class="text-text-secondary text-sm mt-1">A créé une nouvelle tactique "Formation en V"</p>
+                                <div class="flex items-center mt-2 space-x-2">
+                                    <span class="inline-flex items-center px-2 py-1 rounded-full text-xs bg-accent-100 text-accent-700">
+                                        Tactique
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Activity Item 2 -->
+                        <div class="card p-4 flex items-start space-x-4">
+                            <div class="flex-shrink-0">
+                                <div class="w-10 h-10 bg-secondary rounded-full flex items-center justify-center">
+                                    <span class="text-white text-sm font-semibold">SL</span>
+                                </div>
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="font-semibold text-primary">Sophie Laurent</h3>
+                                    <span class="text-xs text-text-secondary">Il y a 4h</span>
+                                </div>
+                                <p class="text-text-secondary text-sm mt-1">A rejoint l'équipe "Lions de Toulouse"</p>
+                                <div class="flex items-center mt-2 space-x-2">
+                                    <span class="inline-flex items-center px-2 py-1 rounded-full text-xs bg-success-100 text-success-700">
+                                        Équipe
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Activity Item 3 -->
+                        <div class="card p-4 flex items-start space-x-4">
+                            <div class="flex-shrink-0">
+                                <div class="w-10 h-10 bg-accent rounded-full flex items-center justify-center">
+                                    <span class="text-white text-sm font-semibold">PG</span>
+                                </div>
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="font-semibold text-primary">Pierre Garnier</h3>
+                                    <span class="text-xs text-text-secondary">Il y a 6h</span>
+                                </div>
+                                <p class="text-text-secondary text-sm mt-1">A partagé l'analyse "Défense en ligne"</p>
+                                <div class="flex items-center mt-2 space-x-2">
+                                    <span class="inline-flex items-center px-2 py-1 rounded-full text-xs bg-primary-100 text-primary-700">
+                                        Analyse
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <a href="javascript:void(0)" class="text-primary hover:text-primary-700 font-medium text-sm transition-smooth">
+                            Voir toute l'activité →
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Start Tutorials -->
+                <div>
+                    <h2 class="text-2xl font-bold text-primary font-accent mb-6">Guide de Démarrage</h2>
+                    <div class="space-y-4">
+                        <!-- Tutorial 1 -->
+                        <div class="card p-4 hover:shadow-rugby-hover transition-all cursor-pointer">
+                            <div class="flex items-center space-x-4">
+                                <div class="flex-shrink-0">
+                                    <div class="w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center">
+                                        <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="font-semibold text-primary">Créer votre première tactique</h3>
+                                    <p class="text-text-secondary text-sm">Apprenez à utiliser le visualiseur de terrain</p>
+                                    <div class="flex items-center mt-2">
+                                        <span class="text-xs text-accent font-medium">5 min</span>
+                                        <span class="mx-2 text-border">•</span>
+                                        <span class="text-xs text-text-secondary">Débutant</span>
+                                    </div>
+                                </div>
+                                <div class="flex-shrink-0">
+                                    <svg class="w-5 h-5 text-text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Tutorial 2 -->
+                        <div class="card p-4 hover:shadow-rugby-hover transition-all cursor-pointer">
+                            <div class="flex items-center space-x-4">
+                                <div class="flex-shrink-0">
+                                    <div class="w-10 h-10 bg-accent-100 rounded-lg flex items-center justify-center">
+                                        <svg class="w-5 h-5 text-accent-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="font-semibold text-primary">Rejoindre une équipe</h3>
+                                    <p class="text-text-secondary text-sm">Connectez-vous avec d'autres membres</p>
+                                    <div class="flex items-center mt-2">
+                                        <span class="text-xs text-accent font-medium">3 min</span>
+                                        <span class="mx-2 text-border">•</span>
+                                        <span class="text-xs text-text-secondary">Débutant</span>
+                                    </div>
+                                </div>
+                                <div class="flex-shrink-0">
+                                    <svg class="w-5 h-5 text-text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Tutorial 3 -->
+                        <div class="card p-4 hover:shadow-rugby-hover transition-all cursor-pointer">
+                            <div class="flex items-center space-x-4">
+                                <div class="flex-shrink-0">
+                                    <div class="w-10 h-10 bg-secondary-100 rounded-lg flex items-center justify-center">
+                                        <svg class="w-5 h-5 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="font-semibold text-primary">Analyser les performances</h3>
+                                    <p class="text-text-secondary text-sm">Utilisez les outils d'analyse avancés</p>
+                                    <div class="flex items-center mt-2">
+                                        <span class="text-xs text-accent font-medium">8 min</span>
+                                        <span class="mx-2 text-border">•</span>
+                                        <span class="text-xs text-text-secondary">Intermédiaire</span>
+                                    </div>
+                                </div>
+                                <div class="flex-shrink-0">
+                                    <svg class="w-5 h-5 text-text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <a href="javascript:void(0)" class="text-primary hover:text-primary-700 font-medium text-sm transition-smooth">
+                            Voir tous les guides →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievement & Progress Section -->
+    <section class="py-16 bg-gradient-to-br from-primary-50 to-accent-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-primary font-accent mb-4">Vos Accomplissements</h2>
+                <p class="text-lg text-text-secondary">Suivez votre progression dans la communauté</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Achievement Badge 1 -->
+                <div class="card p-6 text-center">
+                    <div class="flex items-center justify-center w-16 h-16 bg-accent rounded-full mb-4 mx-auto">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-primary mb-2">Nouveau Membre</h3>
+                    <p class="text-text-secondary text-sm">Bienvenue dans la communauté !</p>
+                    <div class="mt-4">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs bg-accent-100 text-accent-700">
+                            Débloqué
+                        </span>
+                    </div>
+                </div>
+                
+                <!-- Progress Badge 2 -->
+                <div class="card p-6 text-center opacity-60">
+                    <div class="flex items-center justify-center w-16 h-16 bg-border rounded-full mb-4 mx-auto">
+                        <svg class="w-8 h-8 text-text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-text-secondary mb-2">Tacticien</h3>
+                    <p class="text-text-secondary text-sm">Créez 5 tactiques</p>
+                    <div class="mt-4">
+                        <div class="w-full bg-border-light rounded-full h-2">
+                            <div class="bg-primary h-2 rounded-full" style="width: 20%"></div>
+                        </div>
+                        <p class="text-xs text-text-secondary mt-1">1/5 tactiques</p>
+                    </div>
+                </div>
+                
+                <!-- Progress Badge 3 -->
+                <div class="card p-6 text-center opacity-60">
+                    <div class="flex items-center justify-center w-16 h-16 bg-border rounded-full mb-4 mx-auto">
+                        <svg class="w-8 h-8 text-text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-text-secondary mb-2">Connecteur</h3>
+                    <p class="text-text-secondary text-sm">Rejoignez 3 équipes</p>
+                    <div class="mt-4">
+                        <div class="w-full bg-border-light rounded-full h-2">
+                            <div class="bg-secondary h-2 rounded-full" style="width: 0%"></div>
+                        </div>
+                        <p class="text-xs text-text-secondary mt-1">0/3 équipes</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-surface border-t border-border-light py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Logo & Description -->
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center mb-4">
+                        <svg class="h-8 w-8 text-primary mr-3" viewBox="0 0 40 40" fill="currentColor">
+                            <circle cx="20" cy="20" r="18" fill="none" stroke="currentColor" stroke-width="2"/>
+                            <ellipse cx="20" cy="20" rx="12" ry="8" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                            <path d="M8 20 L32 20 M20 8 L20 32" stroke="currentColor" stroke-width="1"/>
+                            <circle cx="20" cy="20" r="3" fill="currentColor"/>
+                        </svg>
+                        <div>
+                            <h3 class="text-lg font-bold text-primary font-accent">RugbyAuth Portal</h3>
+                            <p class="text-xs text-text-secondary">Communauté Rugby Exclusive</p>
+                        </div>
+                    </div>
+                    <p class="text-text-secondary text-sm max-w-md">
+                        Votre plateforme sécurisée pour la gestion sportive rugby. 
+                        Connectez-vous, créez des tactiques et rejoignez une communauté passionnée.
+                    </p>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="font-semibold text-primary mb-4">Liens Rapides</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="rugby_field_visualizer.html" class="text-text-secondary hover:text-primary transition-smooth">Terrain Rugby</a></li>
+                        <li><a href="profile_management_center.html" class="text-text-secondary hover:text-primary transition-smooth">Mon Profil</a></li>
+                        <li><a href="javascript:void(0)" class="text-text-secondary hover:text-primary transition-smooth">Communauté</a></li>
+                        <li><a href="javascript:void(0)" class="text-text-secondary hover:text-primary transition-smooth">Aide</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Support -->
+                <div>
+                    <h4 class="font-semibold text-primary mb-4">Support</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="javascript:void(0)" class="text-text-secondary hover:text-primary transition-smooth">Centre d'Aide</a></li>
+                        <li><a href="javascript:void(0)" class="text-text-secondary hover:text-primary transition-smooth">Contact</a></li>
+                        <li><a href="javascript:void(0)" class="text-text-secondary hover:text-primary transition-smooth">Confidentialité</a></li>
+                        <li><a href="javascript:void(0)" class="text-text-secondary hover:text-primary transition-smooth">Conditions</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-border-light mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-text-secondary text-sm">© 2025 RugbyAuth Portal. Tous droits réservés.</p>
+                <div class="flex items-center space-x-4 mt-4 md:mt-0">
+                    <span class="text-xs text-text-secondary">Dernière connexion: 07/09/2025 17:19</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // User session management
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get user data from localStorage
+            const userData = JSON.parse(localStorage.getItem('rugbyAuthUser') || '{}');
+            
+            if (userData.email) {
+                // Update user name and initials
+                const userName = userData.email.split('@')[0];
+                const initials = userName.substring(0, 2).toUpperCase();
+                
+                document.getElementById('userName').textContent = userName.charAt(0).toUpperCase() + userName.slice(1);
+                document.getElementById('userInitials').textContent = initials;
+            } else {
+                // Redirect to login if no user session
+                window.location.href = 'authentication_portal.html';
+            }
+        });
+
+        // User dropdown menu
+        document.getElementById('userMenuButton').addEventListener('click', function() {
+            const dropdown = document.getElementById('userDropdown');
+            dropdown.classList.toggle('hidden');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const dropdown = document.getElementById('userDropdown');
+            const button = document.getElementById('userMenuButton');
+            
+            if (!button.contains(event.target) && !dropdown.contains(event.target)) {
+                dropdown.classList.add('hidden');
+            }
+        });
+
+        // Logout functionality
+        document.getElementById('logoutButton').addEventListener('click', function() {
+            localStorage.removeItem('rugbyAuthUser');
+            window.location.href = 'authentication_portal.html';
+        });
+
+        // Rugby field interaction
+        const fieldZones = document.querySelectorAll('.field-zone');
+        const fieldInfo = document.getElementById('fieldInfo');
+        
+        const zoneInfo = {
+            'left-try': {
+                title: 'Zone d\'En-But Gauche',
+                description: 'Zone de marquage des essais. Planifiez vos attaques finales et analysez les mouvements offensifs.'
+            },
+            'right-try': {
+                title: 'Zone d\'En-But Droite',
+                description: 'Zone de marquage des essais. Étudiez les patterns de jeu et optimisez vos stratégies d\'attaque.'
+            },
+            'center': {
+                title: 'Centre du Terrain',
+                description: 'Point central du jeu. Analysez les formations, les rucks et les phases de possession.'
+            },
+            'left-22': {
+                title: 'Zone des 22m Gauche',
+                description: 'Zone tactique critique. Planifiez vos stratégies défensives et offensives dans cette zone clé.'
+            },
+            'right-22': {
+                title: 'Zone des 22m Droite',
+                description: 'Zone tactique critique. Optimisez vos mouvements et analysez les opportunités de jeu.'
+            }
+        };
+
+        fieldZones.forEach(zone => {
+            zone.addEventListener('mouseenter', function() {
+                const zoneType = this.dataset.zone;
+                const info = zoneInfo[zoneType];
+                
+                if (info) {
+                    fieldInfo.innerHTML = `
+                        <h3 class="font-semibold text-primary mb-2">${info.title}</h3>
+                        <p class="text-text-secondary text-sm">${info.description}</p>
+                    `;
+                }
+            });
+            
+            zone.addEventListener('mouseleave', function() {
+                fieldInfo.innerHTML = `
+                    <h3 class="font-semibold text-primary mb-2">Terrain Rugby Officiel</h3>
+                    <p class="text-text-secondary text-sm">Survolez ou cliquez sur les zones pour explorer les fonctionnalités tactiques</p>
+                `;
+            });
+            
+            zone.addEventListener('click', function() {
+                const zoneType = this.dataset.zone;
+                // Add click animation
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 150);
+                
+                // Show detailed info or redirect to field visualizer
+                setTimeout(() => {
+                    window.location.href = 'rugby_field_visualizer.html';
+                }, 300);
+            });
+        });
+
+        // Animate player dots
+        const playerDots = document.querySelectorAll('.player-dot');
+        let animationIndex = 0;
+
+        function animatePlayerMovement() {
+            playerDots.forEach((dot, index) => {
+                const delay = index * 1000;
+                setTimeout(() => {
+                    // Random movement within field bounds
+                    const newLeft = Math.random() * 60 + 20; // 20% to 80%
+                    const newTop = Math.random() * 60 + 20;  // 20% to 80%
+                    
+                    dot.style.transition = 'all 2s ease-in-out';
+                    dot.style.left = newLeft + '%';
+                    dot.style.top = newTop + '%';
+                }, delay);
+            });
+        }
+
+        // Start player animation
+        setInterval(animatePlayerMovement, 5000);
+
+        // Tutorial click handlers
+        document.querySelectorAll('.card').forEach(card => {
+            if (card.querySelector('h3') && card.querySelector('h3').textContent.includes('tactique')) {
+                card.addEventListener('click', function() {
+                    window.location.href = 'rugby_field_visualizer.html';
+                });
+            }
+        });
+
+        // Welcome animation on page load
+        window.addEventListener('load', function() {
+            const welcomeSection = document.querySelector('section');
+            welcomeSection.style.opacity = '0';
+            welcomeSection.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+                welcomeSection.style.transition = 'all 800ms ease-out';
+                welcomeSection.style.opacity = '1';
+                welcomeSection.style.transform = 'translateY(0)';
+            }, 100);
+        });
+
+        // Add smooth scrolling for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add loading states for navigation
+        document.querySelectorAll('a[href$=".html"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                // Add loading animation
+                const originalText = this.innerHTML;
+                this.style.opacity = '0.7';
+                this.style.pointerEvents = 'none';
+                
+                // Reset after navigation (in case of back button)
+                setTimeout(() => {
+                    this.style.opacity = '1';
+                    this.style.pointerEvents = 'auto';
+                }, 2000);
+            });
+        });
+    </script>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+</html>
